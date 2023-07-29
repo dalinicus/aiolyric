@@ -3,10 +3,10 @@ import io
 
 from setuptools import find_packages, setup
 
-version = "1.0.10"
+version = "1.1.0"
 
 setup(
-    name="aiolyric",
+    name="dalinicus.aiolyric",
     version=version,
     description="AIO package for the Honeywell Lyric Platform.",
     long_description=io.open("README.md", encoding="UTF-8").read(),

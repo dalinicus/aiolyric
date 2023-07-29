@@ -7,6 +7,7 @@ from .const import BASE_URL
 from .objects.base import LyricBase
 from .objects.device import LyricDevice
 from .objects.location import LyricLocation
+from .objects.priority import LyricPriority
 
 
 class Lyric(LyricBase):
@@ -24,6 +25,7 @@ class Lyric(LyricBase):
         self._devices_dict: dict = {}
         self._locations: List[LyricLocation] = []
         self._locations_dict: dict = {}
+        self._rooms: List
 
     @property
     def client_id(self) -> str:
@@ -73,6 +75,20 @@ class Lyric(LyricBase):
         self._locations_dict: dict = {}
         for location in self._locations:
             self._locations_dict[location.locationID] = location
+
+    async def get_priority_and_rooms(
+            self,
+            location_id: int
+        ) -> None:
+        """Get Priority, which contains accessory information."""
+        response: ClientResponse = await self._client.get(
+            f"{BASE_URL}/priority?apikey={self.client_id}&locationId={location_id}"
+        )
+        json = await response.json()
+        self.logger.debug(json)
+        
+        self._priority = LyricPriority(self._client, json)
+        self._rooms = self._priority.currentPriority.rooms    
 
     async def update_thermostat(
         self,
