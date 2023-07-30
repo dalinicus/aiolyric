@@ -58,13 +58,14 @@ def priority_fixture_response():
                     'roomAvgHumidity': 52, 
                     'overallMotion': False, 
                     'accessories': [
-                        {'id': 2, 
-                         'type': 'IndoorAirSensor', 
-                         'excludeTemp': False, 
-                         'excludeMotion': False, 
-                         'temperature': 76, 
-                         'status': 'Ok', 
-                         'detectMotion': True
+                        {
+                            'id': 2, 
+                            'type': 'IndoorAirSensor', 
+                            'excludeTemp': False, 
+                            'excludeMotion': False, 
+                            'temperature': 76, 
+                            'status': 'Ok', 
+                            'detectMotion': True
                         }
                     ]
                 }
